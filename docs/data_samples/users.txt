@@ -1,3 +1,0 @@
-admin	admin123	Academic Affairs	Administrator
-staff01	staff123	Academic Affairs	Kim Hana
-staff02	staff234	Student Services	Lee Jisoo

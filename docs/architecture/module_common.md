@@ -2,39 +2,62 @@
 
 ## 1. 목적
 
-공통 모듈은 서버와 클라이언트가 함께 사용하는 타입, 상수, 함수 원형, 검증 규칙을 분리하여 중복 구현을 줄인다.
+공통 모듈은 서버와 클라이언트가 함께 사용하는 메시지 포맷, 명령 코드, 구조체, 파일 경로 상수, 함수 원형을 정의한다.
 
-## 2. 권장 파일
+## 2. 메시지 포맷
 
-| 파일 | 역할 |
+서버/클라이언트 송수신용 메시지는 탭 문자로 필드를 구분하고, 줄바꿈으로 메시지 끝을 구분한다.
+
+```text
+TYPE<TAB>COMMAND<TAB>STATUS<TAB>PAYLOAD
+```
+
+| 필드 | 설명 |
 |------|------|
-| `protocol.h` | 요청 코드, 응답 코드, 공통 버퍼 크기, 파일 경로 상수 |
+| TYPE | `REQ` 또는 `RES` |
+| COMMAND | LOGIN, USER_ADD, USER_DELETE, STUDENT_SEARCH, STUDENT_ADD, STUDENT_DELETE, STUDENT_UPDATE, DEPT_LIST |
+| STATUS | 요청은 `-`, 응답은 `OK` 또는 `FAIL` |
+| PAYLOAD | 명령별 데이터 |
+
+## 3. 구조체 정의
+
+```c
+typedef struct Student {
+    char name[50];
+    char student_id[20];
+    char department[80];
+    int grade;
+    double gpa;
+    char email[100];
+    char mobile_phone[30];
+    struct Student *next;
+} Student;
+
+typedef struct User {
+    char user_id[40];
+    char password[80];
+    char department[80];
+    char name[50];
+} User;
+
+typedef struct Message {
+    char type[8];
+    char command[32];
+    char status[16];
+    char payload[1024];
+} Message;
+```
+
+## 4. 헤더 파일 원칙
+
+| 파일 | 포함 내용 |
+|------|------|
+| `protocol.h` | 메시지 포맷, 명령 코드, 응답 상태, 버퍼 크기 |
 | `student.h` | `Student` 구조체와 학생 관리 함수 원형 |
-| `student.c` | 연결 리스트 기반 학생 관리 구현 |
-| `auth.h` | `User` 구조체와 인증 함수 원형 |
-| `auth.c` | 로그인, 사용자 추가, 사용자 삭제 구현 |
+| `user.h` | `User` 구조체와 사용자 관리 함수 원형 |
 | `file_io.h` | 파일 입출력 함수 원형 |
-| `file_io.c` | 학생/사용자 파일 로딩 및 저장 구현 |
-| `validation.h` | 검증 함수 원형 |
-| `validation.c` | 빈 값, 범위, 중복, 이메일 형식 검증 구현 |
+| `scheduler.h` | 01:00 저장 확인 함수 원형 |
 
-## 3. 프로토콜 기준
+## 5. 시간 처리
 
-요청 및 응답 메시지의 구체적인 문자열 형식과 구분자는 요구사항 미정이다. 구현 시 `protocol.h`에 한 번만 정의하고 서버와 클라이언트가 동일한 정의를 사용해야 한다.
-
-| 구분 | 예시 항목 |
-|------|------|
-| 요청 코드 | 로그인, 사용자 추가, 학생 조회, 학생 추가, 학생 수정, 학생 삭제 |
-| 응답 코드 | 성공, 실패, 인증 오류, 입력 오류, 저장 오류 |
-| 공통 상수 | 버퍼 크기, 최대 필드 길이, 파일 경로 |
-
-## 4. 시간 처리
-
-시간 정보를 기록하거나 표시해야 하는 세부 범위는 요구사항 미정이다. 시간 기능이 필요한 경우 C 표준 `time.h`를 사용한다.
-
-## 5. 헤더 파일 원칙
-
-- 구조체 정의는 관련 헤더에 둔다.
-- 여러 파일에서 사용하는 함수 원형은 헤더에 둔다.
-- 파일 내부에서만 사용하는 함수는 `static`으로 제한한다.
-- 헤더에는 중복 include 방지를 적용한다.
+매일 01:00 학생정보 저장 시점 판단은 C 표준 `time.h`를 사용한다.
