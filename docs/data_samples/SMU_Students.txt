@@ -1,0 +1,10 @@
+20240001	Kim Minjun	Computer Science	1	4.10	minjun.kim@smu.ac.kr	010-1000-0001
+20240002	Lee Seoyeon	Computer Science	2	3.85	seoyeon.lee@smu.ac.kr	010-1000-0002
+20240003	Park Jiho	Software Engineering	3	3.72	jiho.park@smu.ac.kr	010-1000-0003
+20240004	Choi Harin	Business Administration	1	4.25	harin.choi@smu.ac.kr	010-1000-0004
+20240005	Jung Doyun	Economics	4	3.64	doyun.jung@smu.ac.kr	010-1000-0005
+20240006	Kang Yuna	Media Communication	2	3.91	yuna.kang@smu.ac.kr	010-1000-0006
+20240007	Yoon Taehyun	Electrical Engineering	3	3.58	taehyun.yoon@smu.ac.kr	010-1000-0007
+20240008	Shin Jiwon	Korean Language and Literature	1	3.97	jiwon.shin@smu.ac.kr	010-1000-0008
+20240009	Han Seojun	Data Science	2	4.02	seojun.han@smu.ac.kr	010-1000-0009
+20240010	Oh Yeri	Public Administration	4	3.77	yeri.oh@smu.ac.kr	010-1000-0010
