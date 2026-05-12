@@ -1,58 +1,34 @@
-# Online Student Management System — 문서 인덱스
+# Online Student Management System — 설계 문서
 
-**기준 문서**: `requirements.md` | **언어**: C | **플랫폼**: Windows | **UI**: Console
+**기준**: [`../requirements.md`](../requirements.md)  
+**언어**: 한국어 (기술 용어만 English)  
+**대상**: Windows Console 기반 C 프로그램  
+**구조**: Socket Server-Client
 
-본 문서 묶음은 대학 교직원을 위한 온라인 학생관리 시스템의 요구사항, 서버/클라이언트 구조, 파일 구조, 메시지 포맷, 구조체 설계, 개발 계획을 정리한다. 모든 하위 문서는 `requirements.md`를 단일 최종 기준으로 따른다.
+## 문서 구성
 
----
+| # | 섹션 | 목적 |
+|---|------|------|
+| 01 | [overview](./01_overview/) | 프로젝트 목적, 범위, 플랫폼, NFR, 용어 |
+| 02 | [features](./02_features/) | 기능 요구사항 상세 |
+| 03 | [architecture](./03_architecture/) | 서버/클라이언트 구조, 데이터 흐름 |
+| 04 | [file_structure](./04_file_structure/) | 소스 트리, 모듈 책임, 헤더 분리 |
+| 05 | [security](./05_security/) | 로그인, 권한, 입력 검증 |
+| 06 | [ui_ux](./06_ui_ux/) | 콘솔 메뉴, 명령, 화면 흐름 |
+| 07 | [database](./07_database/) | 텍스트 파일 스키마와 연결 리스트 |
+| 08 | [api](./08_api/) | 소켓 메시지 포맷과 명령 |
+| 09 | [exception](./09_exception/) | 예외 분류와 처리 기준 |
+| 10 | [todo_list](./10_todo_list/) | 구현 단계, 체크리스트, 수용 기준 |
 
-## 기술 스택
+## 읽는 순서
 
-| 항목 | 내용 |
-|------|------|
-| 언어 | C |
-| 운영체제 | Windows |
-| UI | 콘솔 메뉴 |
-| 구조 | 서버/클라이언트 분리 |
-| 통신 | 소켓 통신 |
-| 자료구조 | 학생 연결 리스트 |
-| 저장 방식 | 텍스트 파일 입출력 |
-| 시간 처리 | `time.h` |
+**처음 읽는 사람**: `01 → 02 → 03 → 07 → 08 → 06 → 05 → 09 → 04 → 10`  
+**구현자**: `04 → 08 → 07 → 03 → 02 → 09` 순서로 참조  
+**리뷰어**: `01 → 02 → 05 → 09 → 10`
 
----
+## 문서 규약
 
-## 문서 구조
-
-| 폴더 | 파일 | 내용 |
-|------|------|------|
-| `overview/` | `requirements_analysis.md` | 최신 요구사항 요약 |
-| `overview/` | `project_summary.md` | 프로젝트 개요 |
-| `overview/` | `requirements_traceability.md` | 요구사항 추적표 |
-| `architecture/` | `system_structure_design.md` | 전체 시스템 구조 |
-| `architecture/` | `server_architecture.md` | 서버 구조와 처리 흐름 |
-| `architecture/` | `client_architecture.md` | 클라이언트 구조와 메뉴 흐름 |
-| `architecture/` | `module_common.md` | 공통 헤더, 메시지 포맷, 구조체 |
-| `database/` | `file_schema.md` | `users.txt`, `SMU_Students.txt` 파일 구조 |
-| `database/` | `in_memory_structures.md` | 연결 리스트와 인메모리 구조 |
-| `development/` | `development_plan.md` | 개발 계획 |
-| `development/` | `development_phases.md` | 단계별 구현 범위 |
-| `development/` | `implementation_guide.md` | 구현 지침 |
-| `development/` | `nfr_checklist.md` | 비기능 요구사항 점검표 |
-| `features/` | `functional_specification.md` | 기능 명세 |
-
----
-
-## 핵심 요구사항
-
-- Windows PC에서 정상 동작하는 C 언어 기반 콘솔 프로그램
-- 학생정보를 관리하는 서버와 사용자 명령을 송신하는 클라이언트 분리
-- 소켓 통신 기반 요청/응답 처리
-- 로그인된 인가 사용자만 학생정보 관리 기능 사용
-- 로그인된 사용자만 신규 사용자 추가
-- 사용자 삭제 기능
-- `users.txt`와 `SMU_Students.txt` 탭 구분 파일 관리
-- 학생 검색, 학생 추가, 학생 삭제, 학생 정보 수정
-- 학과명 기반 전체 학생 조회
-- 서버의 연결 리스트 기반 학생정보 관리
-- 매일 01:00 `time.h` 기반 학생정보 저장
-- 송수신용 메시지 포맷과 서버 기능 구현용 구조체 정의
+- 파일/함수/매크로/명령 코드는 `backtick` 으로 표기.
+- 요구사항 ID는 `requirements.md` 의 ID 를 그대로 사용한다.
+- 다이어그램은 mermaid 코드블록으로 작성한다.
+- `requirements.md` 에 없는 기능은 문서에 추가하지 않는다.
