@@ -43,3 +43,14 @@ Terminal 2:
 ```powershell
 .\client.exe
 ```
+
+## 저장 시간 변경 방법(save_config.h)
+
+```
+save_config.h 내부의 아래 두 코드를 변경 후 control s -> server.exe -> client.exe 실행 하시면 됩니다.
+
+#define SAVE_HOUR 
+#define SAVE_MINUTE 
+
+시간 및 분은 24시간 기준입니다(ex. 저녁 8시 == 20시)
+```
