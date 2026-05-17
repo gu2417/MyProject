@@ -1,0 +1,36 @@
+{
+  "configurations": [
+    {
+      "name": "Win32-MinGW",
+      "includePath": [
+        "C:/Users/nialg/MyProject/include",
+        "C:/Users/nialg/MyProject/src",
+        "${workspaceFolder}/include",
+        "${workspaceFolder}/**",
+        "${workspaceFolder}/src",
+        "C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include",
+        "C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include-fixed",
+        "C:/msys64/mingw64/include",
+        "C:/msys64/mingw64/x86_64-w64-mingw32/include"
+      ],
+      "browse": {
+        "path": [
+          "C:/Users/nialg/MyProject/include",
+          "C:/Users/nialg/MyProject/src",
+          "${workspaceFolder}/**",
+          "C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include",
+          "C:/msys64/mingw64/include"
+        ],
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "defines": [
+        "WIN32_LEAN_AND_MEAN"
+      ],
+      "compilerPath": "C:/msys64/mingw64/bin/gcc.exe",
+      "cStandard": "c11",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "windows-gcc-x64"
+    }
+  ],
+  "version": 4
+}

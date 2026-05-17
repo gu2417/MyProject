@@ -1,0 +1,46 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build server",
+      "type": "shell",
+      "command": "gcc",
+      "args": [
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Iinclude",
+        "-o",
+        "build/server.exe",
+        "src/server/server_main.c",
+        "src/server/request_handler.c",
+        "src/common/protocol.c",
+        "src/common/scheduler.c",
+        "src/data/linked_list.c",
+        "src/data/user.c",
+        "src/storage/file_io.c",
+        "-lws2_32"
+      ],
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "build client",
+      "type": "shell",
+      "command": "gcc",
+      "args": [
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Iinclude",
+        "-o",
+        "build/client.exe",
+        "src/client/client_main.c",
+        "src/common/protocol.c",
+        "-lws2_32"
+      ],
+      "group": "build",
+      "problemMatcher": "$gcc"
+    }
+  ]
+}
